@@ -1,18 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-import { Component } from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import { Component } from "react";
 
 //Handle event
-function Clicker(){
+class Toggle extends Component {
+  constructor(props) {
+    super(props);
 
-  function handleClick(e){
-    alert('berhasil mengclick');
-    e.preventDefault();
+    this.state = {
+      toggleStatus: true,
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
-
-  return(
-    <a href="#" onClick={handleClick}>Klik disini bro</a>
-  )
+  handleClick() {
+    this.setState((state) => ({
+      toggleStatus: !state.toggleStatus,
+    }));
+  }
+  render(){
+    return(
+      <button onClick={this.handleClick} >
+        {this.state.toggleStatus ? 'ON' : 'OFF'}
+        <p>Kodisi sekarang {this.state.toggleStatus ? 'Menyala' : 'Mati'}</p>
+      </button>
+    )
+  }
 }
 
 function App() {
@@ -20,7 +32,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-      <Clicker />
+        <Toggle />
       </header>
     </div>
   );
