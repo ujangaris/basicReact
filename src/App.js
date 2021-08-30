@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
-import List from './List';
+import List from "./List";
 
 //Handle event
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       todoItem: "",
-      items:[]
+      items: [],
     };
   }
 
@@ -20,14 +20,14 @@ class App extends Component {
       // items: this.state.items.concat([this.state.todoItem])//kalo ini cara lama
       //ini cara baru pada jsx
       items: [...this.state.items, this.state.todoItem],
-      todoItem:''//ini untuk mengosongkan lagi
-    })
+      todoItem: "", //ini untuk mengosongkan lagi
+    });
   };
-  handleChange = (event) =>{
+  handleChange = (event) => {
     this.setState({
-      todoItem: event.target.value
-    })
-  }
+      todoItem: event.target.value,
+    });
+  };
   render() {
     return (
       <div>
