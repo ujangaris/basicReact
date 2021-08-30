@@ -1,41 +1,45 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
+import List from './List';
 
 //Handle event
-class Toggle extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      toggleStatus: true,
+      todoItem: "",
+      items:[]
     };
-    this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
-    this.setState((state) => ({
-      toggleStatus: !state.toggleStatus,
-    }));
-  }
-  render(){
-    return(
-      <button onClick={this.handleClick} >
-        {this.state.toggleStatus ? 'ON' : 'OFF'}
-        <p>Kodisi sekarang {this.state.toggleStatus ? 'Menyala' : 'Mati'}</p>
-      </button>
-    )
-  }
-}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Toggle />
-      </header>
-    </div>
-  );
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      // items: this.state.items.concat([this.state.todoItem])//kalo ini cara lama
+      //ini cara baru pada jsx
+      items: [...this.state.items, this.state.todoItem],
+      todoItem:''//ini untuk mengosongkan lagi
+    })
+  };
+  handleChange = (event) =>{
+    this.setState({
+      todoItem: event.target.value
+    })
+  }
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.todoItem} onChange={this.handleChange} />
+          <button>Add</button>
+        </form>
+
+        <List items={this.state.items} />
+      </div>
+    );
+  }
 }
 
 export default App;
