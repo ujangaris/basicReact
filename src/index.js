@@ -12,7 +12,11 @@ ReactDOM.render(
 );
 
 const name = "Sekolah Koding";
-const element = <h1>Halo {name} </h1>;
+const element = <h1> {greet(name)} !</h1>;
+
+function greet(){
+  return "Halo "+ name
+}
 ReactDOM.render(element, document.getElementById("master"));
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
