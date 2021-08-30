@@ -2,36 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
-//STATE
-class Timer extends Component{
+//Handle event
+function Clicker(){
 
-  constructor(props){
-    super(props)
-    this.state = {
-      time : props.start
-    }
+  function handleClick(e){
+    alert('berhasil mengclick');
+    e.preventDefault();
   }
 
-  //LifeCycle
-  componentDidMount(){
-      this.addInterval = setInterval(()=> this.increase(),1000)  
-  }
-  componentWillUnmount(){
-    clearInterval(this.addInterval)
-  }
-
-  increase(){
-    //update state time setiap detik
-    this.setState((state,props) => ({
-      time: parseInt(this.state.time) + 1
-    }))
-  }
-  
-  render(){
-    return(
-      <div>{this.state.time} Detik</div>
-    )
-  }
+  return(
+    <a href="#" onClick={handleClick}>Klik disini bro</a>
+  )
 }
 
 function App() {
@@ -39,8 +20,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Timer start="0" />
-        <Timer start="5" />
+      <Clicker />
       </header>
     </div>
   );
