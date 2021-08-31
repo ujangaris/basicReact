@@ -1,42 +1,38 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
-import List from "./List";
 
-//Handle event
+
 class App extends Component {
   constructor(props) {
-    super(props);
-
+    super(props)
+  
     this.state = {
-      todoItem: "",
-      items: [],
+       items: [],
+       isLoading:true
     };
-  }
+  };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.setState({
-      // items: this.state.items.concat([this.state.todoItem])//kalo ini cara lama
-      //ini cara baru pada jsx
-      items: [...this.state.items, this.state.todoItem],
-      todoItem: "", //ini untuk mengosongkan lagi
-    });
-  };
-  handleChange = (event) => {
-    this.setState({
-      todoItem: event.target.value,
-    });
-  };
+  componentDidMount(){
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(data =>this.setState({items:data, isLoading:false}))
+  }
+  
+  
   render() {
+    const {items, isLoading} = this.state
+
+    if(isLoading){
+      return <p>Loading...</p>
+    }
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.todoItem} onChange={this.handleChange} />
-          <button>Add</button>
-        </form>
-
-        <List items={this.state.items} />
+       <ul>
+         {items.map((item, index) =>
+          <li key={index}>{item.name}</li>
+          )}
+       </ul>
       </div>
     );
   }
