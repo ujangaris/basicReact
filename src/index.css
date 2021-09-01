@@ -15,3 +15,9 @@ code {
   padding: 10px;
   background: grey;
 }
+.is-success{
+  background: green;
+}
+.is-warning{
+  background: orange;
+}

@@ -8,35 +8,31 @@ class App extends Component {
       <div>
         <Welcome />
         <p>Kontent Biasa / Kontent Utama</p>
-        <Warning/>
+        <Warning />
       </div>
     );
   }
 }
 
-function Welcome(){
+function Welcome() {
   return (
-    <Notification>
+    <Notification status='success'>
       <h1>Selamat Datang!</h1>
       <p>Selamat bergabung!!</p>
     </Notification>
-  )
+  );
 }
 
-function Warning(){
+function Warning() {
   return (
-    <Notification>
+    <Notification status='warning'>
       <h1>Jangan lupa bayar tagihannya!</h1>
     </Notification>
-  )
+  );
 }
 
-function Notification(props){
-  return(
-    <div className="notification">
-      {props.children}
-    </div>
-  )
+function Notification(props) {
+  return <div className={'notification is-' + props.status }>{props.children}</div>;
 }
 
 export default App;
