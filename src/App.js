@@ -5,24 +5,38 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <table>
-        <tr>
-          <Column />
-        </tr>
-      </table>
+      <div>
+        <Welcome />
+        <p>Kontent Biasa / Kontent Utama</p>
+        <Warning/>
+      </div>
     );
   }
 }
 
-class Column extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <td>Data satu</td>
-        <td>Data berikutnya</td>
-      </React.Fragment>
-    );
-  }
+function Welcome(){
+  return (
+    <Notification>
+      <h1>Selamat Datang!</h1>
+      <p>Selamat bergabung!!</p>
+    </Notification>
+  )
+}
+
+function Warning(){
+  return (
+    <Notification>
+      <h1>Jangan lupa bayar tagihannya!</h1>
+    </Notification>
+  )
+}
+
+function Notification(props){
+  return(
+    <div className="notification">
+      {props.children}
+    </div>
+  )
 }
 
 export default App;
